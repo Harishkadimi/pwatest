@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Alternative news</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="Description" content="Install.">
+<link rel="apple-touch-icon" href="images/icons/icon-72x72.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff" />
+</head>
+
+<body>
+  <header>
+    <h1>Alternative news</h1>
+    <select id="sources"></select>
+  </header>
+  <main></main>
+  <script src="app.js"></script>
+<script>
+ if ('serviceWorker' in navigator) {
+    console.log("Will the service worker register?");
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(reg){
+        console.log("Yes, it did.");
+     }).catch(function(err) {
+        console.log("No it didn't. This happened:", err)
+    });
+ }
+ window.addEventListener('beforeinstallprompt', (e) => {
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Update UI notify the user they can add to home screen
+  showInstallPromotion();
+});
+</script>
+</body>
+
+</html>
